@@ -15,7 +15,7 @@ CORS(app)
 app.config["DEBUG"] = True
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
-@app.route('/', methods=['GEt'])
+@app.route('/', methods=['GET'])
 def index():
 	return "Welcome to Simple Python Microservices"
 
