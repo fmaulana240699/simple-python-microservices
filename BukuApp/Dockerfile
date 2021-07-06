@@ -6,7 +6,7 @@ WORKDIR APP
 
 COPY buku.py .
 
-RUN pip3 install flask requests flask_cors socket
+RUN pip3 install flask requests flask_cors
 
 EXPOSE 5001
 
