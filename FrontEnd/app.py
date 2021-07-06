@@ -21,7 +21,7 @@ def index():
 
 @app.route('/buku', methods=['GET', 'POST'])
 def buku():
-	data_buku = requests.get('http://localhost:5001/buku')
+	data_buku = requests.get('http://bukuapp:5001/buku')
 	data_buku.status_code = 200
 	print(data_buku)
 	return '{} {}'.format(data_buku.json(), x)
@@ -30,7 +30,7 @@ def buku():
 
 @app.route('/film', methods=['GET', 'POST'])
 def film():
-	data_film = requests.get('http://localhost:5000/film')
+	data_film = requests.get('http://filmapp:5000/film')
 	data_film.status_code = 200
 	return '{} {}'.format(data_film.json(), x)
 
