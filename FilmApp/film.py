@@ -3,6 +3,8 @@ from flask import jsonify, request
 #import sqlite3
 from flask_cors import CORS
 import socket
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
 x = socket.gethostbyname(socket.gethostname())
 
@@ -10,6 +12,9 @@ app = Flask(__name__)
 CORS(app)
 app.config["DEBUG"] = True
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
+xray_recorder.configure(service='Film App')
+XRayMiddleware(app, xray_recorder)
 
 @app.route('/film', methods=['GET'])
 def film():

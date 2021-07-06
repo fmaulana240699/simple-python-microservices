@@ -6,7 +6,7 @@ WORKDIR APP
 
 COPY app.py .
 
-RUN pip3 install flask requests flask_cors 
+RUN pip3 install flask requests flask_cors aws_xray_sdk
 
 EXPOSE 80
 
