@@ -6,6 +6,8 @@ from flask_cors import CORS
 import socket
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+import dns.resolver
+
 
 x = socket.gethostbyname(socket.gethostname())
 ip_address = {
@@ -27,7 +29,12 @@ def index():
 
 @app.route('/buku', methods=['GET', 'POST'])
 def buku():
-	data_buku = requests.get('http://buku.micro.simple:5001/buku')
+	answers = dns.resolver.query('_buku._tcp.micro.simple', 'SRV')
+	for rdata in answers:
+    	host = rdata.target
+    	port = rdata.port
+
+	data_buku = requests.get(f'http://{host}:{port}/buku')
 	data_buku.status_code = 200
 	print(data_buku)
 	return '{} {}'.format(data_buku.json(), x)
@@ -36,7 +43,11 @@ def buku():
 
 @app.route('/film', methods=['GET', 'POST'])
 def film():
-	data_film = requests.get('http://film.micro.simple:5000/film')
+	answers = dns.resolver.query('_film._tcp.micro.simple', 'SRV')
+	for rdata in answers:
+    	host = rdata.target
+    	port = rdata.port
+	data_film = requests.get(f'http://{host}:{port}/film')
 	data_film.status_code = 200
 	return '{} {}'.format(data_film.json(), x)
 
