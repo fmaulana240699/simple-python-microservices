@@ -31,8 +31,8 @@ def index():
 def buku():
 	answers = dns.resolver.query('_buku._tcp.micro.simple', 'SRV')
 	for rdata in answers:
-    	host = rdata.target
-    	port = rdata.port
+		host = rdata.target
+		port = rdata.port
 
 	data_buku = requests.get(f'http://{host}:{port}/buku')
 	data_buku.status_code = 200
@@ -45,8 +45,9 @@ def buku():
 def film():
 	answers = dns.resolver.query('_film._tcp.micro.simple', 'SRV')
 	for rdata in answers:
-    	host = rdata.target
-    	port = rdata.port
+		host = rdata.target
+		port = rdata.port
+
 	data_film = requests.get(f'http://{host}:{port}/film')
 	data_film.status_code = 200
 	return '{} {}'.format(data_film.json(), x)
