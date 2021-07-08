@@ -29,7 +29,7 @@ def index():
 
 @app.route('/buku', methods=['GET', 'POST'])
 def buku():
-	answers = dns.resolver.query('_buku._tcp.micro.simple', 'SRV')
+	answers = dns.resolver.query('buku.micro.simple', 'SRV')
 	for rdata in answers:
 		host = rdata.target
 		port = rdata.port
@@ -43,7 +43,7 @@ def buku():
 
 @app.route('/film', methods=['GET', 'POST'])
 def film():
-	answers = dns.resolver.query('_film._tcp.micro.simple', 'SRV')
+	answers = dns.resolver.query('film.micro.simple', 'SRV')
 	for rdata in answers:
 		host = rdata.target
 		port = rdata.port
